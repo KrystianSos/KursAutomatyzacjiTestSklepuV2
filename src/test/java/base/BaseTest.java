@@ -20,6 +20,7 @@ public class BaseTest {
         options.addArguments("start-maximized");
         options.addArguments("disable-extensions");
         driver = new ChromeDriver(options);
+        driver.get("http://5.196.7.235/");
     }
 
     @AfterMethod

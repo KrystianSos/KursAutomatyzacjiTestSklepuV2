@@ -14,7 +14,7 @@ public class MainPage extends BasePage {
     private ListOfProductsPage popularProducts;
     private TopMenuPage menu;
 
-    public ListOfProductsPage getPopularProducts() {
+    public ListOfProductsPage getProductContainer() {
         return popularProducts;
     }
 
