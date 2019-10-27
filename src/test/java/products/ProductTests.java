@@ -3,6 +3,7 @@ package products;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.commons.MainPage;
 import pages.products.ProductMiniaturePage;
 
@@ -41,6 +42,9 @@ public class ProductTests extends BaseTest {
     public void displayDiscountedPrices(){
         MainPage mainPage = new MainPage(getDriver());
         List<ProductMiniaturePage> allProducts = mainPage.getProductContainer().getProducts();
+
+        SoftAssert softAssert = new SoftAssert();
+
         for (ProductMiniaturePage product : allProducts) {
             if(product.isDiscounted()){
                 BigDecimal expectedPrice = product.getPriceBeforeDiscount()
@@ -48,8 +52,9 @@ public class ProductTests extends BaseTest {
                                 .subtract(product.getDiscountValue()))
                         .stripTrailingZeros();
                 System.out.println("I'm checking now: " + product.getName());
-                Assert.assertEquals(expectedPrice.compareTo(product.getPrice().stripTrailingZeros()),0, " failed for product" + product.getName());
+                softAssert.assertEquals(expectedPrice.compareTo(product.getPrice().stripTrailingZeros()),0, " failed for product" + product.getName());
             }
         }
+        softAssert.assertAll();
     }
 }
