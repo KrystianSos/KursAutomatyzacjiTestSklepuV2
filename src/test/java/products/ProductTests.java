@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.commons.MainPage;
+import pages.products.ProductDetailsPage;
 import pages.products.ProductMiniaturePage;
 
 import java.math.BigDecimal;
@@ -56,5 +57,19 @@ public class ProductTests extends BaseTest {
             }
         }
         softAssert.assertAll();
+    }
+
+    @Test
+    public void displayCorrectNameInProductDetails(){
+        MainPage mainPage = new MainPage(getDriver());
+        ProductMiniaturePage product = mainPage
+                .getProductContainer()
+                .getRandomProduct();
+        String expectedName = product.getName().toUpperCase();
+        product.open();
+
+        ProductDetailsPage productDetailsPage = new ProductDetailsPage(getDriver());
+        Assert.assertTrue(productDetailsPage.getName().contains(expectedName));
+
     }
 }

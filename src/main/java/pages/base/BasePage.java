@@ -37,7 +37,7 @@ public class BasePage {
     }
 
     protected void click(WebElement element) {
-        System.out.println("Klikam w element + " + element.getText());
+        System.out.println("Klikam w element: " + element.getText());
         element.click();
     }
 
