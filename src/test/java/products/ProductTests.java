@@ -45,9 +45,10 @@ public class ProductTests extends BaseTest {
             if(product.isDiscounted()){
                 BigDecimal expectedPrice = product.getPriceBeforeDiscount()
                         .multiply(new BigDecimal(1)
-                                .subtract(product.getDiscountValue()));
+                                .subtract(product.getDiscountValue()))
+                        .stripTrailingZeros();
                 System.out.println("I'm checking now: " + product.getName());
-                Assert.assertEquals(expectedPrice.compareTo(product.getPrice()),0, " failed for product" + product.getName());
+                Assert.assertEquals(expectedPrice.compareTo(product.getPrice().stripTrailingZeros()),0, " failed for product" + product.getName());
             }
         }
     }
