@@ -11,7 +11,7 @@ public class Product {
     }
 
     private int quantity;
-    
+
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
