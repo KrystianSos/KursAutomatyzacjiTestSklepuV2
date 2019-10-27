@@ -15,7 +15,7 @@ public class Order {
     private void updateTotalPrice() {
         totalOrderPrice = new BigDecimal(0);
         for (Product product : products) {
-            totalOrderPrice.add(product.getTotalPrice());
+            totalOrderPrice = totalOrderPrice.add(product.getTotalPrice());
         }
     }
 
@@ -32,8 +32,11 @@ public class Order {
     }
 
     public int getTotalQuantity() {
-        return products.stream()
-                .mapToInt(Product::getQuantity)
-                .sum();
+        int sum = 0;
+        for (Product product : products) {
+            int quantity = product.getQuantity();
+            sum += quantity;
+        }
+        return sum;
     }
 }
