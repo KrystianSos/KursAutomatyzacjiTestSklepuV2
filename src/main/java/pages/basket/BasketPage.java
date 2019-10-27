@@ -15,4 +15,8 @@ public class BasketPage extends BasePage {
     public TopMenuPage getMenu() {
         return menu;
     }
+
+    public Order toOrder(){
+
+    }
 }
